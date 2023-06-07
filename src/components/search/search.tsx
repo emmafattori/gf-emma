@@ -1,14 +1,17 @@
-import { MouseEvent, useEffect, useState } from "react"
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react"
 
-export const Search = () => {
+export interface SearchProps {
+  query?: string | null
+}
+
+export const Search = ({ query }: SearchProps) => {
   const [data, setData] = useState(Array<{}>)
-  const recipeArr = []
-  const query = "gluten free"
+  const [input, setInput] = useState("")
   const APP_ID = "cb42b4a6"
   const APP_KEY = "dfa5b9f944acbf6422e2d2e3c90649e2"
   const getRecipes = async () => {
     const response = await fetch(
-      `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
+      `https://api.edamam.com/search?q=${input}&app_id=${APP_ID}&app_key=${APP_KEY}`
     )
     if (!response.ok) {
       throw new Error("Failed to fetch")
@@ -16,9 +19,6 @@ export const Search = () => {
     const recipeData = await response.json()
     return recipeData
   }
-  // useEffect(() => {
-
-  // }, [])
 
   const handleSubmit = () => {
     getRecipes()
@@ -29,21 +29,29 @@ export const Search = () => {
         console.log(err)
       })
   }
-  console.log(data)
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value)
+  }
 
   return (
     <div>
       <label htmlFor="search">Search for a new recipe</label>
-      <input id="search"></input>
+      <input
+        id="search"
+        type="text"
+        className="searchInput"
+        onChange={handleChange}
+      ></input>
       <div className="">Results:</div>
       <button type="submit" onClick={handleSubmit}>
         Search
       </button>
-      <div className="results">
-        {data.map((recipe, idx) => (
-          <li key={idx}>{idx}</li>
+      <ul className="results">
+        {data.map((recipe: any, idx) => (
+          <li key={idx}>{recipe.recipe.label}</li>
         ))}
-      </div>
+      </ul>
     </div>
   )
 }
