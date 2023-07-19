@@ -2,6 +2,7 @@ import { Search } from "@/components/search/search"
 import "../globals.css"
 import { Header } from "@/components/header/header"
 import Head from "next/head"
+import { Banner } from "@/components/banner/banner"
 
 export default function Home() {
   const metadata = {
@@ -14,8 +15,9 @@ export default function Home() {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </Head>
-      <main className=" min-h-screen p-5">
+      <main className="">
         <Header />
+        <Banner />
         <Search />
       </main>
     </>

@@ -35,7 +35,7 @@ export const Search = ({ query }: SearchProps) => {
   }
 
   return (
-    <div>
+    <section id="#search">
       <label htmlFor="search">Search for a new recipe</label>
       <input
         id="search"
@@ -52,6 +52,6 @@ export const Search = ({ query }: SearchProps) => {
           <li key={idx}>{recipe.recipe.label}</li>
         ))}
       </ul>
-    </div>
+    </section>
   )
 }
