@@ -24,6 +24,7 @@ export const Search = ({ query }: SearchProps) => {
     getRecipes()
       .then((fetchedRecipes) => {
         setData(fetchedRecipes.hits)
+        console.log(fetchedRecipes.hits)
       })
       .catch((err) => {
         console.log(err)
@@ -35,16 +36,19 @@ export const Search = ({ query }: SearchProps) => {
   }
 
   return (
-    <section id="#search">
-      <label htmlFor="search">Search for a new recipe</label>
-      <input
-        id="search"
-        type="text"
-        className="searchInput"
-        onChange={handleChange}
-      ></input>
+    <section id="#search" className="m-5 w-full flex flex-col">
+      <div className="">
+        <label htmlFor="search">Search for a new recipe</label>
+        <input
+          id="search"
+          type="text"
+          className="searchInput"
+          onChange={handleChange}
+        ></input>
+      </div>
+
       <div className="">Results:</div>
-      <button type="submit" onClick={handleSubmit}>
+      <button className="border p-2" type="submit" onClick={handleSubmit}>
         Search
       </button>
       <ul className="results">
