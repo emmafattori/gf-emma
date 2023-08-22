@@ -1,11 +1,12 @@
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react"
+import Link from "next/link"
 
 export interface SearchProps {
   query?: string | null
 }
 
 export const Search = ({ query }: SearchProps) => {
-  const [data, setData] = useState(Array<{}>)
+  const [recipes, setRecipes] = useState(Array<{}>)
   const [input, setInput] = useState("")
   const APP_ID = "cb42b4a6"
   const APP_KEY = "dfa5b9f944acbf6422e2d2e3c90649e2"
@@ -23,7 +24,7 @@ export const Search = ({ query }: SearchProps) => {
   const handleSubmit = () => {
     getRecipes()
       .then((fetchedRecipes) => {
-        setData(fetchedRecipes.hits)
+        setRecipes(fetchedRecipes.hits)
         console.log(fetchedRecipes.hits)
       })
       .catch((err) => {
@@ -61,8 +62,10 @@ export const Search = ({ query }: SearchProps) => {
         Search
       </button>
       <ul className="results bg-white">
-        {data.map((recipe: any, idx) => (
-          <li key={idx}>{recipe.recipe.label}</li>
+        {recipes.map((recipe: any, index) => (
+          <li key={index}>
+            <Link href={`/recipes/${index}`}>{recipe.recipe.label}</Link>
+          </li>
         ))}
       </ul>
     </section>
