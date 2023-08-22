@@ -36,22 +36,31 @@ export const Search = ({ query }: SearchProps) => {
   }
 
   return (
-    <section id="#search" className="m-5 w-full flex flex-col">
+    <section id="#search" className="p-8 w-full flex flex-col bg-black">
       <div className="">
-        <label htmlFor="search">Search for a new recipe</label>
-        <input
-          id="search"
-          type="text"
-          className="searchInput"
-          onChange={handleChange}
-        ></input>
+        <div className="flex flex-col items-center">
+          <label htmlFor="search" className="text-lg uppercase text-white">
+            Search for a new recipe
+          </label>
+          <input
+            id="search"
+            type="text"
+            className="searchInput w-2/4 m-3"
+            onChange={handleChange}
+            placeholder="Chicken Tacos"
+          ></input>
+        </div>
       </div>
 
       <div className="">Results:</div>
-      <button className="border p-2" type="submit" onClick={handleSubmit}>
+      <button
+        className="border p-2 text-white"
+        type="submit"
+        onClick={handleSubmit}
+      >
         Search
       </button>
-      <ul className="results">
+      <ul className="results bg-white">
         {data.map((recipe: any, idx) => (
           <li key={idx}>{recipe.recipe.label}</li>
         ))}
