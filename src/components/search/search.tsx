@@ -1,19 +1,19 @@
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react"
 import Link from "next/link"
-import { getRecipes } from "@/pages/api/getRecipes"
+import { Recipe, getRecipes } from "@/pages/api/getRecipes"
 export interface SearchProps {
   query?: string | null
 }
 
 export const Search = ({ query }: SearchProps) => {
-  const [recipes, setRecipes] = useState(Array<{}>)
+  const [recipes, setRecipes] = useState<Recipe[]>([])
   const [input, setInput] = useState("")
 
   const handleSubmit = () => {
     getRecipes(input)
       .then((fetchedRecipes) => {
         setRecipes(fetchedRecipes.hits)
-        console.log(fetchedRecipes.hits)
+        // console.log(fetchedRecipes.hits)
       })
       .catch((err) => {
         console.log(err)

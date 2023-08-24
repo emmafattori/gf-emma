@@ -1,23 +1,46 @@
 import { useRouter } from "next/router"
+import { getRecipes } from "../api/getRecipes"
 import { useEffect, useState } from "react"
-
-import { getRecipes } from "@/pages/api/getRecipes"
-type Recipe = {
-  label: string
-}
+import { Recipe } from "../api/getRecipes"
 const RecipeDetailPage = () => {
   const router = useRouter()
-  const index = router.query
 
-  const [recipes, setRecipes] = useState<Recipe[]>([])
+  const { index, searchTerm } = router.query
 
-  useEffect(() => {}, [index])
+  const [recipe, setRecipe] = useState<Recipe | null>(null)
 
-  const recipeIndex = typeof index === "string" ? parseInt(index, 10) : -1
-  const recipe =
-    recipeIndex >= 0 && recipeIndex < recipes.length
-      ? recipes[recipeIndex]
-      : null
+  useEffect(() => {
+    async function getRecipe() {
+      try {
+        if (!searchTerm) return
+
+        const recipesData = await getRecipes(searchTerm)
+        console.log(recipesData)
+
+        if (recipesData.length > Number(index)) {
+          const selectedRecipe = recipesData[Number(index)]
+          setRecipe(selectedRecipe)
+        } else {
+          console.log("Recipe not found for the given index.")
+        }
+      } catch (error) {
+        // Handle error
+      }
+    }
+
+    getRecipe()
+  }, [index, searchTerm])
+
+  if (!recipe) {
+    return <p>Recipe not found</p>
+  }
+
+  return (
+    <div>
+      <h2>{recipe.recipe.label}</h2>
+      {/* Display other recipe details */}
+    </div>
+  )
 }
 
 export default RecipeDetailPage
