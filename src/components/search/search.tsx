@@ -6,7 +6,11 @@ export interface SearchProps {
   query?: string | null
 }
 
-export const Search = ({ query }: SearchProps) => {
+export interface RecipeListProps {
+  recipes: Recipe[]
+}
+
+export const Search = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([])
   const [input, setInput] = useState("")
 
