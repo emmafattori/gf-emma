@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import { getRecipes } from "../api/getRecipes"
 import { useEffect, useState } from "react"
 import { Recipe } from "../api/getRecipes"
+import { Head } from "next/document"
 const RecipeDetailPage = () => {
   const router = useRouter()
 
@@ -36,10 +37,13 @@ const RecipeDetailPage = () => {
   }
 
   return (
-    <div>
-      <h2>{recipe.recipe.label}</h2>
-      {/* Display other recipe details */}
-    </div>
+    <>
+      <Head></Head>
+      <div>
+        <h2>{recipe.recipe.label}</h2>
+        {/* Display other recipe details */}
+      </div>
+    </>
   )
 }
 
