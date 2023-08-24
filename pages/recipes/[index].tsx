@@ -2,7 +2,6 @@ import { useRouter } from "next/router"
 import { getRecipes } from "../api/getRecipes"
 import { useEffect, useState } from "react"
 import { Recipe } from "../api/getRecipes"
-import { Head } from "next/document"
 const RecipeDetailPage = () => {
   const router = useRouter()
 
@@ -16,10 +15,9 @@ const RecipeDetailPage = () => {
         if (!searchTerm) return
 
         const recipesData = await getRecipes(searchTerm)
-        console.log(recipesData)
 
-        if (recipesData.length > Number(index)) {
-          const selectedRecipe = recipesData[Number(index)]
+        if (recipesData.hits.length > Number(index)) {
+          const selectedRecipe = recipesData.hits[Number(index)]
           setRecipe(selectedRecipe)
         } else {
           console.log("Recipe not found for the given index.")
@@ -38,7 +36,6 @@ const RecipeDetailPage = () => {
 
   return (
     <>
-      <Head></Head>
       <div>
         <h2>{recipe.recipe.label}</h2>
         {/* Display other recipe details */}

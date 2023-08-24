@@ -1,6 +1,7 @@
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react"
 import Link from "next/link"
-import { Recipe, getRecipes } from "@/pages/api/getRecipes"
+import { Recipe, getRecipes } from "../../../pages/api/getRecipes"
+
 export interface SearchProps {
   query?: string | null
 }

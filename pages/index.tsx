@@ -1,5 +1,5 @@
 import { Search } from "@/components/search/search"
-import "../globals.css"
+import "../src/globals.css"
 import { Header } from "@/components/header/header"
 import Head from "next/head"
 import { Banner } from "@/components/banner/banner"
