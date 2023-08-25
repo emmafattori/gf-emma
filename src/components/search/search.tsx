@@ -18,7 +18,7 @@ export const Search = () => {
     getRecipes(input)
       .then((fetchedRecipes) => {
         setRecipes(fetchedRecipes.hits)
-        // console.log(fetchedRecipes.hits)
+        console.log(fetchedRecipes.hits)
       })
       .catch((err) => {
         console.log(err)

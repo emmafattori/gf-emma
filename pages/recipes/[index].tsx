@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { Recipe } from "../api/getRecipes"
 import { useRouter } from "next/router"
 
-const RecipeDetailsPage = () => {
+export const RecipeDetailsPage = () => {
   const router = useRouter()
   const { index } = router.query
   const [recipeData, setRecipeData] = useState<Recipe | null>(null) // State to hold fetched recipe data
@@ -42,4 +42,17 @@ const RecipeDetailsPage = () => {
   )
 }
 
-export default RecipeDetailsPage
+// export async function getStaticProps() {
+//   const APP_ID = "cb42b4a6"
+//   const APP_KEY = "dfa5b9f944acbf6422e2d2e3c90649e2"
+
+//   const recipes =
+//     await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=''&app_id=${APP_ID}&app_key=${APP_KEY}
+//   `).then((res) => res.json())
+//   console.log(recipes)
+//   return {
+//     props: {
+//       character: recipes[0]
+//     }
+//   }
+// }

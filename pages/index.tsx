@@ -11,7 +11,6 @@ export default function Home({ recipes }) {
     description: "Gluten Free Recipes"
   }
 
-  console.log(recipes)
   return (
     <>
       <Head>
@@ -26,12 +25,12 @@ export default function Home({ recipes }) {
       <main className="">
         <Header />
         <Banner />
-        {/* <Search /> */}
-        <ul>
+        <Search />
+        {/* <ul>
           {recipes.map((recipe, index: number) => {
             return <li key={index}>{recipe.recipe.label}</li>
           })}
-        </ul>
+        </ul> */}
       </main>
     </>
   )
@@ -39,14 +38,15 @@ export default function Home({ recipes }) {
 const APP_ID = "cb42b4a6"
 const APP_KEY = "dfa5b9f944acbf6422e2d2e3c90649e2"
 
-export async function getStaticProps() {
-  const recipes = await fetch(
-    `https://api.edamam.com/search?q="burgers"&app_id=${APP_ID}&app_key=${APP_KEY}`
-  ).then((res) => res.json())
-  console.log(recipes)
-  return {
-    props: {
-      recipes: recipes.hits
-    }
-  }
-}
+// export async function getStaticProps() {
+//   const recipes = await fetch(
+//     `https://api.edamam.com/api/recipes/v2?type=public&q=&app_id=${APP_ID}&app_key=${APP_KEY}
+//     `
+//   ).then((res) => res.json())
+
+//   return {
+//     props: {
+//       recipes: recipes.hits
+//     }
+//   }
+// }
