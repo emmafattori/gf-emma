@@ -18,7 +18,8 @@ export const getRecipes = async (
   searchTerm: string | string[]
 ): Promise<ApiResponse> => {
   const response = await fetch(
-    `https://api.edamam.com/search?q=${searchTerm}&app_id=${APP_ID}&app_key=${APP_KEY}`
+    `https://api.edamam.com/api/recipes/v2?type=public&q=${searchTerm}&app_id=${APP_ID}&app_key=${APP_KEY}
+    `
   )
   if (!response.ok) {
     throw new Error("Failed to fetch")

@@ -1,6 +1,7 @@
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react"
 import Link from "next/link"
 import { Recipe, getRecipes } from "../../../pages/api/getRecipes"
+import router, { useRouter } from "next/router"
 
 export interface SearchProps {
   query?: string | null
@@ -8,11 +9,13 @@ export interface SearchProps {
 
 export interface RecipeListProps {
   recipes: Recipe[]
+  onRecipesClick: (recipeId: string) => void
 }
 
 export const Search = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([])
   const [input, setInput] = useState("")
+  const router = useRouter()
 
   const handleSubmit = () => {
     getRecipes(input)
@@ -27,6 +30,10 @@ export const Search = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
+  }
+
+  const handleRecipeSelect = (recipeId: string) => {
+    router.push(recipeId)
   }
 
   return (
@@ -57,7 +64,7 @@ export const Search = () => {
       <ul className="results bg-white">
         {recipes.map((recipe: any, index) => (
           <li key={index}>
-            <Link href={`/recipes/${index}`}>{recipe.recipe.label}</Link>
+            <Link href={`/recipe/${index}`}>{recipe.recipe.label}</Link>
           </li>
         ))}
       </ul>
