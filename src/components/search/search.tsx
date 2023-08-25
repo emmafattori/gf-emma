@@ -32,9 +32,9 @@ export const Search = () => {
     setInput(e.target.value)
   }
 
-  const handleRecipeSelect = (recipeId: string) => {
-    router.push(recipeId)
-  }
+  // const handleRecipeSelect = (recipeId: any) => {
+  //   router.push(recipeId)
+  // }
 
   return (
     <section id="#search" className="p-8 w-full flex flex-col bg-black">
@@ -64,7 +64,14 @@ export const Search = () => {
       <ul className="results bg-white">
         {recipes.map((recipe: any, index) => (
           <li key={index}>
-            <Link href={`/recipe/${index}`}>{recipe.recipe.label}</Link>
+            <Link
+              href={{
+                pathname: `/recipes/${index}`,
+                query: { id: recipe._links.self.href }
+              }}
+            >
+              {recipe.recipe.label}
+            </Link>
           </li>
         ))}
       </ul>
