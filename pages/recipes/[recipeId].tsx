@@ -4,22 +4,27 @@ import { useEffect, useState } from "react"
 import { getRecipeDetails } from "../api/getRecipeDetails"
 const RecipeDetailsPage = () => {
   const router = useRouter()
-  const { recipeId } = router.query
+  const { query } = router
 
   const [recipeDetails, setRecipeDetails] = useState<any>(null)
 
-  useEffect(() => {
-    if (recipeId === "string") {
-      const data = getRecipeDetails(recipeId)
+  // useEffect(() => {
+  //   if (recipe === "string") {
+  //     const data = getRecipeDetails(recipe)
 
-      setRecipeDetails(data)
-    }
-    // Update the 'recipeDetails' state with the fetched data
-  }, [recipeId])
-  console.log(recipeDetails)
+  //     setRecipeDetails(data)
+  //   }
+  //   // Update the 'recipeDetails' state with the fetched data
+  // }, [recipe])
+  console.log(query)
+
+  const recipe = query
 
   return (
-    <div>The details page</div>
+    <>
+      <div>The details page</div>
+      <h2>{recipe.label}</h2>
+    </>
     // <div>
     //   {recipeDetails ? (
     //     <div>

@@ -11,6 +11,6 @@ export const getRecipeDetails = async (id: string): Promise<ApiResponse> => {
     throw new Error("Failed to fetch")
   }
   const recipeData = await response.json()
-  console.log(recipeData)
+  // console.log(recipeData)
   return recipeData
 }

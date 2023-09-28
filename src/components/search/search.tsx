@@ -21,7 +21,7 @@ export const Search = () => {
     getRecipes(input)
       .then((fetchedRecipes) => {
         setRecipes(fetchedRecipes.hits)
-        console.log(fetchedRecipes.hits)
+        // console.log(fetchedRecipes.hits)
       })
       .catch((err) => {
         console.log(err)
@@ -67,7 +67,7 @@ export const Search = () => {
             <Link
               href={{
                 pathname: `/recipes/${index}`,
-                query: { id: recipe._links.self.href }
+                query: { ...recipe.recipe }
               }}
             >
               {recipe.recipe.label}
