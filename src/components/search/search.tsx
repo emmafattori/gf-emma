@@ -15,10 +15,9 @@ export interface RecipeListProps {
 export const Search = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([])
   const [input, setInput] = useState("")
-  const router = useRouter()
 
   const handleSubmit = () => {
-    getRecipes(input)
+    getRecipes(`gluten free ${input}`)
       .then((fetchedRecipes) => {
         setRecipes(fetchedRecipes.hits)
         // console.log(fetchedRecipes.hits)
