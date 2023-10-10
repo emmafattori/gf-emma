@@ -2,6 +2,9 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { getRecipeDetails } from "../api/getRecipeDetails"
+import "../../src/globals.css"
+import { Header } from "../../src/components/header/header"
+
 const RecipeDetailsPage = () => {
   const router = useRouter()
   const { query } = router
@@ -22,20 +25,23 @@ const RecipeDetailsPage = () => {
 
   return (
     <>
-      <div>The details page</div>
-      <h2>{recipe.label}</h2>
+      <div className="h-screen w-4/5 m-auto my-4">
+        <header className="text-center">
+          <h1 className="text-4xl">Recipe Details Page</h1>
+        </header>
+        <div className="details-container">
+          <div>
+            {recipe ? (
+              <div>
+                <h2>{recipe.label}</h2>
+              </div>
+            ) : (
+              <p>Loading...</p>
+            )}
+          </div>
+        </div>
+      </div>
     </>
-    // <div>
-    //   {recipeDetails ? (
-    //     <div>
-    //       <h1>{recipeDetails.name}</h1>
-    //       <p>{recipeDetails.description}</p>
-    //       {/* Render other recipe details */}
-    //     </div>
-    //   ) : (
-    //     <p>Loading...</p>
-    //   )}
-    // </div>
   )
 }
 
