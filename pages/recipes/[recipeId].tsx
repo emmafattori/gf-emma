@@ -1,7 +1,5 @@
 // pages/[recipeId].tsx
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
-import { getRecipeDetails } from "../api/getRecipeDetails"
 import "../../src/globals.css"
 import Image from "next/image"
 import Link from "next/link"
@@ -10,10 +8,7 @@ const RecipeDetailsPage = () => {
   const router = useRouter()
   const { query } = router
 
-  const [recipeDetails, setRecipeDetails] = useState<any>(null)
-
   const recipe = query
-  console.log(recipe)
   return (
     <>
       <div className="w-4/5 m-auto my-4">

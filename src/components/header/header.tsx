@@ -23,7 +23,7 @@ export const Header = () => {
         <li>
           <Link
             className="font-thin text-white tracking-widest uppercase"
-            href={"/weekly-plan"}
+            href={"/weekly"}
           >
             Weekly Plan
           </Link>
