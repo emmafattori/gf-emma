@@ -1,14 +1,16 @@
 // pages/[recipeId].tsx
 import { useRouter } from "next/router"
 import "../../src/globals.css"
-import Image from "next/image"
+import Image from "next/legacy/image"
 import Link from "next/link"
 
 const RecipeDetailsPage = () => {
   const router = useRouter()
   const { query } = router
 
-  const recipe = query
+  const {recipe} = query
+  console.log(recipe)
+  
   return (
     <>
       <div className="w-4/5 m-auto my-4">
@@ -26,20 +28,24 @@ const RecipeDetailsPage = () => {
           <h1 className="text-4xl">{recipe.label}</h1>
         </header>
         <div className="details-container w-4/5 m-auto text-center flex flex-col justify-center items-center my-8">
-          <Image
-            src={recipe.image}
-            alt={recipe.label}
+        {recipe.image && (
+            <Image
+            src={recipe.image.toString()}
+            alt={recipe.label?.toString()}
             height={300}
             width={200}
           />
+        )}
           <h2>{recipe.label}</h2>
 
           <h5 className="text-lg font-semibold my-7">Ingredients</h5>
-          <ul className="bg-white w-3/4 mx-auto rounded-xl p-4 m-4">
-            {recipe.ingredientLines.map((item, idx) => {
+   
+            <ul className="bg-white w-3/4 mx-auto rounded-xl p-4 m-4">
+            {ingredients.map((item: string, idx: number) => {
               return <li key={idx}>{item}</li>
             })}
           </ul>
+ 
         </div>
       </div>
     </>
