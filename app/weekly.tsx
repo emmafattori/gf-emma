@@ -1,5 +1,4 @@
 import { Header } from "@/components/header/header"
-import "../src/globals.css"
 
 export default function WeeklyPlan() {
   return (

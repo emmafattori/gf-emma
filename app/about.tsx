@@ -1,6 +1,4 @@
 import { Header } from "@/components/header/header";
-import "../src/globals.css"
-
 
 export default function About(){
     return (

@@ -1,6 +1,7 @@
+"use client";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react"
 import Link from "next/link"
-import { Recipe, getRecipes } from "../../../pages/api/getRecipes"
+import { Recipe, getRecipes } from "../../../app/api/getRecipes"
 import router, { useRouter } from "next/router"
 
 export interface SearchProps {

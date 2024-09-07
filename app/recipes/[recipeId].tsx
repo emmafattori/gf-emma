@@ -1,6 +1,5 @@
 // pages/[recipeId].tsx
 import { useRouter } from "next/router"
-import "../../src/globals.css"
 import Image from "next/legacy/image"
 import Link from "next/link"
 
