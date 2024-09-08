@@ -8,7 +8,6 @@ const RecipeDetailsPage = () => {
   const { query } = router
 
   const {recipe} = query
-  console.log(recipe)
   
   return (
     <>
