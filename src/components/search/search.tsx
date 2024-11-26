@@ -1,7 +1,18 @@
 "use client";
-import { useState, ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import { Recipe, getRecipes } from "../../../app/api/getRecipes";
+
+// Simple slugify function
+const slugify = (str: string) => {
+  return str
+    .toLowerCase()
+    .replace(/\s+/g, '-')         // Replace spaces with hyphens
+    .replace(/[^\w\-]+/g, '')     // Remove non-word characters
+    .replace(/\-\-+/g, '-')       // Replace multiple hyphens with a single hyphen
+    .replace(/^-+/, '')           // Remove leading hyphens
+    .replace(/-+$/, '');          // Remove trailing hyphens
+};
 
 export const Search = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -11,9 +22,10 @@ export const Search = () => {
     getRecipes(`gluten free ${input}`)
       .then((fetchedRecipes) => {
         setRecipes(fetchedRecipes.hits);
+        setRecipes(fetchedRecipes.hits);
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   };
 
@@ -21,22 +33,19 @@ export const Search = () => {
     setInput(e.target.value);
   };
 
-  console.log(recipes)
   return (
     <section id="#search" className="p-8 w-full flex flex-col bg-black">
-      <div className="">
-        <div className="flex flex-col items-center">
-          <label htmlFor="search" className="text-lg uppercase text-white">
-            Search for a new recipe
-          </label>
-          <input
-            id="search"
-            type="text"
-            className="searchInput w-2/4 m-3"
-            onChange={handleChange}
-            placeholder="Chicken Tacos"
-          />
-        </div>
+      <div className="flex flex-col items-center">
+        <label htmlFor="search" className="text-lg uppercase text-white">
+          Search for a new recipe
+        </label>
+        <input
+          id="search"
+          type="text"
+          className="searchInput w-2/4 m-3"
+          onChange={handleChange}
+          placeholder="Chicken Tacos"
+        />
       </div>
 
       <div className="">Results:</div>
@@ -50,7 +59,9 @@ export const Search = () => {
       <ul className="results bg-white">
         {recipes.map((recipe, index) => (
           <li key={index}>
-            <Link href={`/recipes/${index}`}>
+            <Link
+              href={`/recipes/${slugify(recipe.recipe.label)}`} // Slugify recipe.label for the URL
+            >
               {recipe.recipe.label}
             </Link>
           </li>
