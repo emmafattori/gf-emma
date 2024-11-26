@@ -1,8 +1,6 @@
-"use client";
 import { ChangeEvent, useState } from "react";
-import Link from "next/link";
-import { Recipe, getRecipes } from "../../../app/api/getRecipes";
-
+import Link from "next/link"
+import { getRecipes, Recipe } from "../../../app/api/getRecipes";
 // Simple slugify function
 const slugify = (str: string) => {
   return str
@@ -21,7 +19,6 @@ export const Search = () => {
   const handleSubmit = () => {
     getRecipes(`gluten free ${input}`)
       .then((fetchedRecipes) => {
-        setRecipes(fetchedRecipes.hits);
         setRecipes(fetchedRecipes.hits);
       })
       .catch((err) => {
